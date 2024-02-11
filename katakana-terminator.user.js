@@ -36,6 +36,10 @@ function scanTextNodes(node) {
         return;
     }
 
+    if (node.parentNode.nodeName === 'RUBY') {
+        return;
+    }
+
     // Ignore text boxes and echoes
     var excludeTags = {ruby: true, script: true, select: true, textarea: true};
 
