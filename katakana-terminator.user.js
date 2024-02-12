@@ -28,6 +28,8 @@ var _ = document;
 var queue = {};  // {"カタカナ": [rtNodeA, rtNodeB]}
 var cachedTranslations = {};  // {"ターミネーター": "Terminator"}
 var newNodes = [_.body];
+var consumerIntervalTimer = null
+var consumerCleanerTimeoutTimer = null
 
 // Recursively traverse the given node and its descendants (Depth-first search)
 function scanTextNodes(node) {
@@ -262,8 +264,29 @@ function main() {
 
     GM_addStyle("rt.katakana-terminator-rt::before { content: attr(data-rt); }");
 
-    var observer = new MutationObserver(mutationHandler);
+    var observer = new MutationObserver((mutationList) => {
+        mutationHandler(mutationList);
+        setupConsumerTimer();
+        setupConsumerCleanerTimer();
+    });
     observer.observe(_.body, {childList: true, subtree: true});
+
+    function setupConsumerCleanerTimer() {
+        if (consumerCleanerTimeoutTimer) {
+            clearTimeout(consumerCleanerTimeoutTimer)
+            consumerCleanerTimeoutTimer = null
+        }
+        consumerCleanerTimeoutTimer = setTimeout(function () {
+            clearInterval(consumerIntervalTimer);
+            consumerIntervalTimer = null;
+        }, 3000);
+    }
+
+    function setupConsumerTimer() {
+        if (!consumerIntervalTimer) {
+            consumerIntervalTimer = setInterval(rescanTextNodes, 1000);
+        }
+    }
 
     function rescanTextNodes() {
         // Deplete buffered mutations
@@ -280,7 +303,8 @@ function main() {
 
     // Limit the frequency of API requests
     rescanTextNodes();
-    setInterval(rescanTextNodes, 500);
+    setupConsumerTimer()
+    setupConsumerCleanerTimer()
 }
 
 // Polyfill for Greasemonkey 4
