@@ -20,6 +20,7 @@
 // @name:ja-JP  カタカナターミネーター
 // @name:zh-CN  片假名终结者
 // @description:zh-CN 在网页中的日语外来语上方标注英文原词
+// @noframes
 // ==/UserScript==
 
 // define some shorthands
