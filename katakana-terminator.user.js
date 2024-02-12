@@ -242,6 +242,24 @@ function mutationHandler(mutationList) {
 }
 
 function main() {
+    function oberserveIfTranslated() {
+        var translatedOverserver = new MutationObserver(function (mutationRecords) {
+            const record = mutationRecords[0].target;
+            if (record.target.className.match('translated')) {
+                observer.disconnect()
+            } else {
+                observer.observe(_.body, { childList: true, subtree: true });
+            }
+        });
+
+        translatedOverserver.observe(document.documentElement, {
+            attributeFilter: ['class'],
+            childList: false,
+            characterData: false
+        });
+    }
+    oberserveIfTranslated()
+
     GM_addStyle("rt.katakana-terminator-rt::before { content: attr(data-rt); }");
 
     var observer = new MutationObserver(mutationHandler);
