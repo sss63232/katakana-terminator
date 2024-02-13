@@ -25,6 +25,9 @@
 
 // define some shorthands
 var _ = document;
+if(!_.documentElement.lang.match('ja')){
+    return
+}
 
 var queue = {};  // {"カタカナ": [rtNodeA, rtNodeB]}
 var cachedTranslations = {};  // {"ターミネーター": "Terminator"}
