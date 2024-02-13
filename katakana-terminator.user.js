@@ -1,12 +1,13 @@
 // ==UserScript==
-// @name        Katakana Terminator
+// @name        Katakana Terminator cyx
 // @description Convert gairaigo (Japanese loan words) back to English
-// @author      Arnie97
+// @author      cyx
 // @license     MIT
+// @copyright   2024, https://github.com/sss63232/katakana-terminator
 // @copyright   2017-2021, Katakana Terminator Contributors (https://github.com/Arnie97/katakana-terminator/graphs/contributors)
-// @namespace   https://github.com/Arnie97
-// @homepageURL https://github.com/Arnie97/katakana-terminator
-// @supportURL  https://greasyfork.org/scripts/33268/feedback
+// @namespace   https://github.com/sss63232
+// @homepageURL https://github.com/sss63232/katakana-terminator
+// @supportURL  https://github.com/sss63232/katakana-terminator/issues
 // @icon        https://upload.wikimedia.org/wikipedia/commons/2/28/Ja-Ruby.png
 // @match       *://*/*
 // @exclude     *://*.bilibili.com/video/*
@@ -16,10 +17,8 @@
 // @connect     translate.google.cn
 // @connect     translate.google.com
 // @connect     translate.googleapis.com
-// @version     2022.02.19
-// @name:ja-JP  カタカナターミネーター
-// @name:zh-CN  片假名终结者
-// @description:zh-CN 在网页中的日语外来语上方标注英文原词
+// @version     2024.02.14
+// @description:zh-CN 在网页中的日语外来语上方标注英文原词, 修改自 "https://github.com/Arnie97/katakana-terminator"
 // @noframes
 // ==/UserScript==
 
