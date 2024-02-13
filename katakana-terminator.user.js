@@ -69,7 +69,7 @@ function addRuby(node) {
         return false;
     }
     var ruby = _.createElement('ruby');
-    ruby.style.background = 'rgba(184, 224, 212, 0.25)';
+    ruby.style.background = 'rgba(184, 224, 212, 0.4)';
     ruby.appendChild(_.createTextNode(match[0]));
     var rt = _.createElement('rt');
     rt.classList.add('katakana-terminator-rt');
@@ -252,14 +252,14 @@ function main() {
     function oberserveIfTranslated() {
         var translatedOverserver = new MutationObserver(function (mutationRecords) {
             const record = mutationRecords[0].target;
-            if (record.target.className.match('translated')) {
+            if (record.target?.className.match('translated')) {
                 observer.disconnect()
             } else {
                 observer.observe(_.body, { childList: true, subtree: true });
             }
         });
 
-        translatedOverserver.observe(document.documentElement, {
+        translatedOverserver.observe(_.documentElement, {
             attributeFilter: ['class'],
             childList: false,
             characterData: false
